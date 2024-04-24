@@ -135,6 +135,17 @@
                         </div>
                     </div>
 
+                    <div class="form-row col-12">                        
+                        <select class="form-control col-6" id="nivelAcademico">
+                            <option value="">Nivel academico</option>
+                        </select>                  
+                        
+                        <select id="facultad" class="form-control col-6">
+                            <option value="">Facultad</option>
+                        </select>
+                        
+                    </div>
+
                     <div class="form-row col-12" >                                                    
                         <div class="col-12">
                             <input type="text" class="form-control col-12" id="buscarPrograma" placeholder="Escribe el programa a buscar">
@@ -196,7 +207,7 @@
                     <!--Legales y botón de inscripción-->                    
                     <div class="form-row col-12 mb-3">
                         <div class="col-12">
-                            <span class="d-block text-azul">¿Autoriza usted el tratamiento de sus datos personales de acuerdo con la <a href="https://javeriana.ingresouniversitario.com/wp-content/uploads/2023/09/autorizacion-de-privacidad.pdf" class=" text-azul fw-medium text-decoration-underline" target="_blank" download="">autorización de privacidad</a>?</span>
+                            <span class="d-block text-azul">¿El candidato acepta el tratamiento de sus datos personales de acuerdo con la <a href="https://www.javeriana.edu.co/informacion/politica-y-tratamiento-de-datos-personales" class=" text-azul fw-medium text-decoration-underline" target="_blank" download="">Política de Protección de Datos Personales</a>?</span>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" id="00N7j000002BI3m" name="00N7j000002BI3m" value="1">
                                 <label class="form-check-label text-azul" for="00N7j000002BI3m">Sí</label><br>                                
@@ -462,65 +473,84 @@
         cargarOpciones(); 
         
         //Programas buscador
-$(document).ready(function() {
-    // URL del repositorio externo que contiene el JSON
-    var urlJSON = "https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/programas.json";
-
-    // Función para cargar el JSON y mostrar los programas en el select
-    function cargarProgramas() {
-        $.ajax({
-            url: urlJSON,
-            dataType: "json",
-            success: function(data) {
-                var selectProgramas = $("#00N7j000002BI3p");
-
-                // Filtrar programas cuando se escriba en el campo de búsqueda
-                $("#buscarPrograma").on("input", function() {
-                    var searchTerm = $(this).val().toLowerCase();
-                    selectProgramas.empty();
-
-                    // Iterar sobre cada nivel académico
-                    $.each(data, function(nivel, infoNivel) {
-                        selectProgramas.append("<optgroup style='background-color:#2c5697; color:#fff;' label='" + nivel + "'>");
-
-                        // Iterar sobre cada facultad dentro del nivel académico
-                        $.each(infoNivel, function(facultad, infoFacultad) {
-                            selectProgramas.append("<option disabled style='padding: 20px; font-weight:600; background-color:#f5fcffd2;color:#000;'>&#8627;  " + facultad + "</option>");
-
-                            // Iterar sobre cada programa dentro de la facultad
-                            $.each(infoFacultad.Programas, function(index, programa) {
-                                var programaNombre = programa.Nombre.toLowerCase();
-                                var programaCodigo = programa.Codigo.toLowerCase(); // Convertir el código a minúsculas
-
-                                // Eliminar las tildes del término de búsqueda y del nombre del programa
-                                searchTerm = searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                                programaNombre = programaNombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-                                // Verificar si el término de búsqueda está presente en el nombre del programa o en su código
-                                if (programaNombre.includes(searchTerm) || programaCodigo.includes(searchTerm)) {
-                                    // Agregar opción al select con el nombre del programa y su código
-                                    selectProgramas.append("<option value='" + programa.Codigo + "'>" + programa.Nombre + " - Código: " + programa.Codigo + "&nbsp &nbsp-&nbsp &nbsp" + nivel + "</option>");
-                                }
-                            });
-                        });
-
-                        selectProgramas.append("</optgroup>");
-                        // Agregar línea horizontal para separar los niveles académicos
-                        selectProgramas.append("<hr>");
-                    });
+        $(document).ready(function() {
+            var urlJSON = "https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/programas.json";
+            var selectNivelAcademico = $("#nivelAcademico");
+            var selectFacultad = $("#facultad");
+            var selectProgramas = $("#00N7j000002BI3p");
+            var data; // Variable para almacenar los datos del JSON
+        
+            // Función para cargar el JSON y mostrar los programas en el select
+            function cargarProgramas() {
+                $.ajax({
+                    url: urlJSON,
+                    dataType: "json",
+                    success: function(jsonData) {
+                        data = jsonData;
+                        cargarNivelesAcademicos();
+                    },
+                    error: function() {
+                        console.log("Error al cargar el JSON.");
+                    }
                 });
-
-                // Trigger para cargar los programas por primera vez
-                $("#buscarPrograma").trigger("input");
-            },
-            error: function() {
-                console.log("Error al cargar el JSON.");
             }
+        
+            // Función para cargar los niveles académicos en la lista desplegable
+            function cargarNivelesAcademicos() {
+                selectNivelAcademico.empty().append("<option value=''>Nivel académico</option>");
+                $.each(data, function(nivel, infoNivel) {
+                    selectNivelAcademico.append("<option value='" + nivel + "'>" + nivel + "</option>");
+                });
+                selectNivelAcademico.on("change", function() {
+                    cargarFacultades($(this).val());
+                });
+                cargarFacultades(""); // Cargar todas las facultades por defecto
+            }
+        
+            // Función para cargar las facultades en la lista desplegable
+            function cargarFacultades(nivelSeleccionado) {
+                selectFacultad.empty().append("<option value=''>Facultad</option>");
+                if (nivelSeleccionado) {
+                    $.each(data[nivelSeleccionado], function(facultad, infoFacultad) {
+                        selectFacultad.append("<option value='" + facultad + "'>" + facultad + "</option>");
+                    });
+                }
+                filtrarProgramas(); // Filtrar programas cuando cambie el nivel académico o la facultad
+            }
+        
+            // Función para filtrar los programas según el término de búsqueda, el nivel académico y la facultad seleccionados
+            function filtrarProgramas() {
+                var searchTerm = $("#buscarPrograma").val().toLowerCase();
+                var nivelSeleccionado = selectNivelAcademico.val();
+                var facultadSeleccionada = selectFacultad.val();
+                selectProgramas.empty();
+        
+                $.each(data, function(nivel, infoNivel) {
+                    if (!nivelSeleccionado || nivel === nivelSeleccionado) {
+                        $.each(infoNivel, function(facultad, infoFacultad) {
+                            if (!facultadSeleccionada || facultad === facultadSeleccionada) {
+                                $.each(infoFacultad.Programas, function(index, programa) {
+                                    var programaNombre = programa.Nombre.toLowerCase();
+                                    var programaCodigo = programa.Codigo.toLowerCase();
+                                    searchTerm = searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                    programaNombre = programaNombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                    if (programaNombre.includes(searchTerm) || programaCodigo.includes(searchTerm)) {
+                                        selectProgramas.append("<option value='" + programa.Codigo + "'>" + programa.Nombre + " - Código: " + programa.Codigo + "&nbsp &nbsp-&nbsp &nbsp" + nivel + "</option>");
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        
+            // Llamar a la función para cargar los programas al cargar la página
+            cargarProgramas();
+        
+            // Agregar evento de cambio al campo de búsqueda y a las listas desplegables
+            $("#buscarPrograma, #nivelAcademico, #facultad").on("input change", filtrarProgramas);
         });
-    }
-
-    cargarProgramas();
-});
+        
 
 //Variable seleccionar indicativo
 const selectIndicativo = document.getElementById('00NO4000002lUPh');
