@@ -120,21 +120,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--Periodo de Ingreso-->
-                    <div class="form-row col-12" >
-                        <div class="col-12 mb-3">
-                            <span class="wpcf7-form-control-wrap">
-                                <select  id="00N7j000002BY2L" maxlength="20" name="00N7j000002BY2L" class="form-control select validates-as-required form-select rounded-1 text-dark mb-3">
-                                    <option value="">*Periodo de Ingreso</option>                        
-                            <option value="PREG2430">Segundo semestre de 2024</option>
-                            <option value="PREG2510">Primer semestre de 2025</option>
-                            <option value="PREG2530">Segundo semestre de 2025</option>
-                                </select>
-                            </span>
-                        </div>
-                    </div>
-
+                    
+                    <!--Buscador-->
                     <div class="form-row col-12">                        
                         <select class="form-control col-6" id="nivelAcademico">
                             <option value="">Nivel academico</option>
@@ -155,6 +142,20 @@
                                 <!-- Opciones de programas cargadas dinámicamente -->
                             </select> 
                         </div>                                                 
+                    </div>
+
+                    <!--Periodo de Ingreso-->
+                    <div class="form-row col-12" >
+                        <div class="col-12 mb-3">
+                            <span class="wpcf7-form-control-wrap">
+                                <select  id="00N7j000002BY2L" maxlength="20" name="00N7j000002BY2L" class="form-control select validates-as-required form-select rounded-1 text-dark mb-3">
+                                    <option value="">*Periodo de Ingreso</option>                        
+                                    <!-- <option value="PREG2430">Segundo semestre de 2024</option>
+                                    <option value="PREG2510">Primer semestre de 2025</option>
+                                    <option value="PREG2530">Segundo semestre de 2025</option> -->
+                                </select>
+                            </span>
+                        </div>
                     </div>
 
                     <br>                 
@@ -478,6 +479,7 @@
             var selectNivelAcademico = $("#nivelAcademico");
             var selectFacultad = $("#facultad");
             var selectProgramas = $("#00N7j000002BI3p");
+            var periodoIngreso = $("#00N7j000002BY2L");
             var data; // Variable para almacenar los datos del JSON
         
             // Función para cargar el JSON y mostrar los programas en el select
@@ -503,9 +505,33 @@
                 });
                 selectNivelAcademico.on("change", function() {
                     cargarFacultades($(this).val());
+                    cargarPeriodos($(this).val()); // Aquí se llama a cargarPeriodos cuando cambia el nivel académico
+                    filtrarProgramas(); // Filtrar programas cuando cambie el nivel académico
                 });
                 cargarFacultades(""); // Cargar todas las facultades por defecto
+                filtrarProgramas(); // Filtrar programas al cargar la página
             }
+
+            // Función para cargar los periodos de ingreso desde el JSON externo
+            function cargarPeriodos(nivelSeleccionado) {
+                $.ajax({
+                    url: "https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/periodos.json",
+                    dataType: "json",
+                    success: function(periodosData) {
+                        // Limpiar y cargar los periodos de ingreso correspondientes al nivel académico seleccionado
+                        periodoIngreso.empty().append("<option value=''>*Periodo de Ingreso</option>");
+                        var periodos = periodosData[nivelSeleccionado];
+                        $.each(periodos, function(periodo, codigo) {
+                            periodoIngreso.append("<option value='" + codigo + "'>" + periodo + "</option>");
+                        });
+                        filtrarProgramas(); // Filtrar programas cuando cambie el periodo de ingreso
+                    },
+                    error: function() {
+                        console.log("Error al cargar los periodos de ingreso desde el JSON.");
+                    }
+                });
+            }
+
         
             // Función para cargar las facultades en la lista desplegable
             function cargarFacultades(nivelSeleccionado) {
@@ -542,13 +568,15 @@
                         });
                     }
                 });
-            }
+            }            
         
             // Llamar a la función para cargar los programas al cargar la página
             cargarProgramas();
         
             // Agregar evento de cambio al campo de búsqueda y a las listas desplegables
             $("#buscarPrograma, #nivelAcademico, #facultad").on("input change", filtrarProgramas);
+
+            
         });
         
 
