@@ -1,82 +1,204 @@
-<!-- Pruebas-->
-<form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="d-flex flex-column justify-content-around px-4 py-5 p-md-5">
-    <input type="hidden" name="oid" value="00D7j0000004eQD">
-    <input type="hidden" name="retURL" id="retURL" value="">
-    <input type="hidden" name="debug" value="1">
-    <input type="hidden" name="debugEmail" value="gesalas@javeriana.edu.co"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equivalencias Pruebas-Producción</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+		body{
+			font-family: "Inter", sans-serif;
+		}
+        table.minimalistBlack {
+            border: 3px solid #000000;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+          }
+          table.minimalistBlack td, table.minimalistBlack th {
+            border: 1px solid #000000;
+            padding: 5px 4px;
+          }
+          table.minimalistBlack tbody td {
+            font-size: 13px;
+          }
+          table.minimalistBlack thead {
+            background: #2c5697;            
+            border-bottom: 3px solid #f8cd00;
+          }
+          table.minimalistBlack thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: left;
+          }
+          table.minimalistBlack tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+            border-top: 3px solid #000000;
+          }
+          table.minimalistBlack tfoot td {
+            font-size: 14px;
+          }
 
-<!--Produccion-->
-<form id="form_me" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="post" novalidate aria-label="Formulario de contacto"  class="needs-validation">
-    <input type=hidden name="oid" value="00Df4000003l8Bf">
-    <input type=hidden name="retURL" value="https://www.javeriana.edu.co/info-prg/thank-you-page-evento-financiero"> 
+		  .elemento{
+			background-color: aliceblue;
+			font-weight: 600;
+		  }
+    </style>
+</head>
+<body>
+	<textarea rows="8" cols="50" style="width:100%;">
+	<!-- Pruebas-->
+		<form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="d-flex flex-column justify-content-around px-4 py-5 p-md-5">
+			<input type="hidden" name="oid" value="00D7j0000004eQD">
+			<input type="hidden" name="retURL" id="retURL" value="">
+			<input type="hidden" name="debug" value="1">
+			<input type="hidden" name="debugEmail" value="gesalas@javeriana.edu.co"> 
+		</textarea>
 
-Pruebas     |   Produccion
-<!-- nombre -->
-id="first_name" |   ===
+	<textarea rows="8" cols="50" style="width:100%;">
+	<!--Produccion-->
+		<form id="form_me" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="post" novalidate aria-label="Formulario de contacto"  class="needs-validation">
+			<input type=hidden name="oid" value="00Df4000003l8Bf">
+			<input type=hidden name="retURL" value="https://www.javeriana.edu.co/info-prg/thank-you-page-evento-financiero"> 
+	</textarea>	
 
-<!-- Apellido -->
-id="last_name"  |   ===
-
-<!-- Tipo de documento -->
-id="00N7j000002BI3X"  |   id="00N5G00000WmhsT"
-
-<!-- Numero de documento -->
-id="00N7j000002BI3V"    |   id="00N5G00000WmhsR"
-
-<!-- Email -->
-id="email"  |   ===                  
-
-<!-- Prefijo celular -->
-id="00NO4000002lUPh"    |  00NJw000002mzb7 
-
-<!-- Telefono celular -->
-id="mobile"     |   ===  
-
-<!-- pais -->
-id="00N7j000002BY1c"    |   id="00N5G00000WmhvJ" 
-
-<!-- Departamento -->
-id="00N7j000002BY1h"    |   id="00N5G00000WmhvX"  
-
-<!-- Ciudad -->
-id="00N7j000002BY1i"    |   id="00N5G00000WmhvO"   
-
-<!-- Periodo de Ingreso -->
-id="00N7j000002BY2L"    |   id="00N5G00000WmhvI"   
-
-<!-- Origen del candidato -->
-id="lead_source"    |   ===    
-
-<!-- Fuente autorización -->
-id="00N7j000002BY26"    |   id="00N5G00000WmhvT" 
-
-<!--Codigo SAE-->
-id="00N7j000002BI3p"    |  id="00N5G00000WmhvV" 
-
-    <!-- Tipo de asistente FERIA-->
-    id="00NO40000000sTR"   |   id="00NJw000001J3g6"
-
-    <!--Nivel academico FERIA-->
-    id="nivelacademico"     |   === 
-
-    <!--Facultad FERIA-->
-    id="Facultad"       |   ===
-
-<!-- Origen de la Solicitud: -->
-id="00NO40000002ZeP"    |   id="00NJw000001J3Hl"  
-
-<!-- Fuente -->
-id="00N7j000002BKgW"    |   id="00N5G00000WmhvW"
-
-<!-- Subfuente -->
-id="00N7j000002BKgb"    |   id="00N5G00000WmhvZ"   
-
-<!-- Medio -->
-id="00NO40000001izt"    |   id="00NJw000001J3g8"  
-
-<!-- Campaña -->
-id="00N7j000002BfkF"    |   id="00N5G00000Wmi8x"  
-
-<!-- Autorizacion datos personales -->
-00N7j000002BI3m |   id="00N5G00000WmhvF"  
+	<table class="minimalistBlack">
+		<thead>
+			<tr>
+				<th>Elemento</th>
+				<th>Id en Pruebas</th>
+				<th>Id en producción</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="elemento">Nombre</td>
+				<td>first_name</td>
+				<td>first_name</td>
+			</tr>
+			<tr>
+				<td class="elemento">Apellido</td>
+				<td>last_name</td>
+				<td>last_name</td>
+			</tr>
+			<tr>
+				<td class="elemento">Tipo de documento</td>
+				<td>00N7j000002BI3X</td>
+				<td>00N5G00000WmhsT</td>
+			</tr>
+			<tr>
+				<td class="elemento">Numero de documento</td>
+				<td>00N7j000002BI3V</td>
+				<td>00N5G00000WmhsR</td>
+			</tr>
+			<tr>
+				<td class="elemento">Email</td>
+				<td>email</td>
+				<td>email</td>
+			</tr>
+			<tr>
+				<td class="elemento">Prefijo celular</td>
+				<td>00NO4000002lUPh</td>
+				<td>00NJw000002mzb7</td>
+			</tr>
+			<tr>
+				<td class="elemento">Telefono celular</td>
+				<td>mobile</td>
+				<td>mobile</td>
+			</tr>
+			<tr>
+				<td class="elemento">Pais de residencia</td>
+				<td>00N7j000002BY1c</td>
+				<td>00N5G00000WmhvJ</td>
+			</tr>
+			<tr>
+				<td class="elemento">Departamento de residencia</td>
+				<td>00N7j000002BY1h</td>
+				<td>00N5G00000WmhvX</td>
+			</tr>
+			<tr>
+				<td class="elemento">Ciudad de residencia</td>
+				<td>00N7j000002BY1i</td>
+				<td>00N5G00000WmhvO</td>
+			</tr>
+			<tr>
+				<td class="elemento">Periodo de Ingreso</td>
+				<td>00N7j000002BY2L</td>
+				<td>00N5G00000WmhvI</td>
+			</tr>
+			<tr>
+				<td class="elemento">Origen del candidato</td>
+				<td>lead_source</td>
+				<td>lead_source</td>
+			</tr>
+			<tr>
+				<td class="elemento">Fuente autorización</td>
+				<td>00N7j000002BY26</td>
+				<td>00N5G00000WmhvT</td>
+			</tr>
+			<tr>
+				<td class="elemento">Codigo SAE</td>
+				<td>00N7j000002BI3p</td>
+				<td>00N5G00000WmhvV</td>
+			</tr>
+			<tr>
+				<td class="elemento">Feria
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tipo de asistente</td>
+						<td>00NO40000000sTR</td>
+						<td>00NJw000001J3g6</td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nivel academico</td>
+						<td>nivelacademico</td>
+						<td>nivelacademico</td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Facultad</td>
+						<td>Facultad</td>
+						<td>Facultad</td>
+					</tr>
+				</td>
+				
+			</tr>
+			<tr>
+				<td class="elemento">Origen de la Solicitud</td>
+				<td>00NO40000002ZeP</td>
+				<td>00NJw000001J3Hl</td>
+			</tr>
+			<tr>
+				<td class="elemento">Fuente</td>
+				<td>00N7j000002BKgW</td>
+				<td>00N5G00000WmhvW</td>
+			</tr>
+			<tr>
+				<td class="elemento">Subfuente</td>
+				<td>00N7j000002BKgb</td>
+				<td>00N5G00000WmhvZ</td>
+			</tr>
+			<tr>
+				<td class="elemento">Medio</td>
+				<td>00NO40000001izt</td>
+				<td>00NJw000001J3g8</td>
+			</tr>
+			<tr>
+				<td class="elemento">Campaña</td>
+				<td>00N7j000002BfkF</td>
+				<td>00N5G00000Wmi8x</td>
+			</tr>
+			<tr>
+				<td class="elemento">Autorizacion datos personales</td>
+				<td>00N7j000002BI3m</td>
+				<td>00N5G00000WmhvF</td>
+			</tr>
+		</tbody>
+	</table>
+    
+</body>
+</html>
 
