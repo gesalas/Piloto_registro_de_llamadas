@@ -10,12 +10,15 @@
     <style>
 		body{
 			font-family: "Inter", sans-serif;
+			padding: 50px;
 		}
         table.minimalistBlack {
             border: 3px solid #000000;
             width: 100%;
             text-align: left;
             border-collapse: collapse;
+			margin-top: 50px;
+		
           }
           table.minimalistBlack td, table.minimalistBlack th {
             border: 1px solid #000000;
@@ -51,8 +54,8 @@
     </style>
 </head>
 <body>
-	<textarea rows="8" cols="50" style="width:100%;">
-	<!-- Pruebas-->
+	<h3>Pruebas</h3>
+	<textarea rows="7" cols="50" style="width:100%;">
 		<form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="d-flex flex-column justify-content-around px-4 py-5 p-md-5">
 			<input type="hidden" name="oid" value="00D7j0000004eQD">
 			<input type="hidden" name="retURL" id="retURL" value="">
@@ -60,12 +63,13 @@
 			<input type="hidden" name="debugEmail" value="gesalas@javeriana.edu.co"> 
 		</textarea>
 
-	<textarea rows="8" cols="50" style="width:100%;">
-	<!--Produccion-->
+	<h3>Producción</h3>
+	<textarea rows="7" cols="50" style="width:100%;">
 		<form id="form_me" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="post" novalidate aria-label="Formulario de contacto"  class="needs-validation">
 			<input type=hidden name="oid" value="00Df4000003l8Bf">
 			<input type=hidden name="retURL" value="https://www.javeriana.edu.co/info-prg/thank-you-page-evento-financiero"> 
 	</textarea>	
+	
 
 	<table class="minimalistBlack">
 		<thead>
