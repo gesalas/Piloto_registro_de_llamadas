@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Registro de candidato</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="background-color: #ffffff; padding:100px;">    
@@ -21,13 +20,12 @@
             <h3 class="d-block fs-4 text-blanco fw-bold text-center text-uppercase" style="color: #2c5697;">Registro de candidato</h3>
         </div>
     </div>    
-    <div id="formulario" class="rounded-30 px-2 px-md-3 py-4 mb-50 shadows-sm" style="background-color: #f5fcffd2 !important; border-radius:20px;">
-                          
+    <div id="formulario" class="rounded-30 px-2 px-md-3 py-4 mb-50 shadows-sm" style="background-color: #f5fcffd2 !important; border-radius:20px;">                          
         <form id="form_me" action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="post" novalidate aria-label="Formulario de contacto"  class="needs-validation">
         <input type=hidden name="oid" value="00D7j0000004eQD">
         <input type="hidden" name="debug" value="1">
         <input type="hidden" name="debugEmail" value="gesalas@javeriana.edu.co"> 
-        <input type=hidden name="retURL" value="Por definir/se dejará la pantalla de debug?">        
+        <input type=hidden name="retURL" value="https://unijaveriana.my.salesforce.com/">        
 
                     <!--Nombres y apellidos-->
                     <div class="form-row col-12">
@@ -162,7 +160,7 @@
                     <br>                 
                 
                     <!-- para ocultar-->
-                    <div class="form-row col-12">
+                    <div class="form-row col-12" style="display: none;">
                         <div class="form-group col-3">
                             <label for="00NO40000002ZeP"> Origen de la Solicitud:</label>
                             <select class="form-control" id="00NO40000002ZeP" name="00NO40000002ZeP" title="Origen de la Solicitud" >
@@ -190,7 +188,7 @@
                     </div>
 
                     <!--UTMS-->
-                    <div class="form-row col-12">
+                    <div class="form-row col-12" style="display: none;">
                         <div class="form-group col-3"> 
                             <label for="00N7j000002BKgW:">Fuente</label><input class="form-control" id="00N7j000002BKgW" name="00N7j000002BKgW" title="Fuente" type="text" value="Comercial"/>
                         </div>
@@ -374,8 +372,9 @@
             ciudadSelect.style= "display:none"; 
         } 
     
-        // Función para cargar las opciones de los desplegables desde el archivo JSON        
-        var jsonUrl3 = 'https://www.javeriana.edu.co/recursosdb/1372208/10609114/ubicaciones.json/42eea925-0d5b-f9b9-e17d-fb7ca71a69ad';
+        // Función para cargar las opciones de los desplegables desde el archivo JSON
+        var jsonUrl3 = 'https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/ubicaciones.json';        
+        //(descomentar en prod.)var jsonUrl3 = 'https://www.javeriana.edu.co/recursosdb/1372208/10609114/ubicaciones.json/42eea925-0d5b-f9b9-e17d-fb7ca71a69ad';
         function cargarOpciones() {
             fetch(jsonUrl3)
                 .then(response => response.json())
@@ -484,7 +483,8 @@
         
         //Programas buscador
         $(document).ready(function() {
-            var urlJSON = "https://www.javeriana.edu.co/recursosdb/1372208/10609114/programas.json/763c6e09-7714-08f0-e639-24a6db5d3750";
+            var urlJSON = "https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/programas.json";
+            //(Descomentar en Prod.) var urlJSON = "https://www.javeriana.edu.co/recursosdb/1372208/10609114/programas.json/763c6e09-7714-08f0-e639-24a6db5d3750";
             var selectNivelAcademico = $("#nivelAcademico");
             var selectFacultad = $("#facultad");
             var selectProgramas = $("#00N7j000002BI3p");
@@ -524,7 +524,8 @@
             // Función para cargar los periodos de ingreso desde el JSON externo
             function cargarPeriodos(nivelSeleccionado) {
                 $.ajax({
-                    url: "https://www.javeriana.edu.co/recursosdb/1372208/10609114/periodos.json/d4112f99-7175-becd-5fdf-81f7c2c8527c",
+                    url: "https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/periodos.json",
+                    //(Descomentar en producción)url: "https://www.javeriana.edu.co/recursosdb/1372208/10609114/periodos.json/d4112f99-7175-becd-5fdf-81f7c2c8527c",
                     dataType: "json",
                     success: function(periodosData) {
                         // Limpiar y cargar los periodos de ingreso correspondientes al nivel académico seleccionado
@@ -596,7 +597,8 @@ let prefijoSeleccionado = document.getElementById("prefijoSeleccionado");
 //Seleccionar codigo de pais
 function codigoDePais(){                
     //fetch('/JSON/codigos_pais.json')
-    fetch('https://www.javeriana.edu.co/recursosdb/1372208/10609114/codigos_pais.json/4733fa76-c07d-e51e-dcc0-0271cc2cdc2e')
+    fetch('https://raw.githubusercontent.com/gesalas/Piloto_registro_de_llamadas/main/Json/codigos_pais.json')
+    // (Descomentar en produccion)fetch('https://www.javeriana.edu.co/recursosdb/1372208/10609114/codigos_pais.json/4733fa76-c07d-e51e-dcc0-0271cc2cdc2e')
     .then(response => response.json())
     .then(data => {                                
         data.forEach(pais => {                                                
