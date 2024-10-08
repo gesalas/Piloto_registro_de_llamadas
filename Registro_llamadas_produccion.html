@@ -162,26 +162,36 @@
                        <br>                 
                    
                        <!-- para ocultar-->
-                       <div class="form-row col-12" style="display: none;">
+                       <div class="form-row col-12" >
                            <div class="form-group col-3">
                                <label for="00NJw000001J3Hl"> Origen de la Solicitud:</label>
                                <select class="form-control" id="00NJw000001J3Hl" name="00NJw000001J3Hl" title="Origen de la Solicitud" >
                                    <option value="Agentes Mercadeo">Agentes Mercadeo</option>
+                                   <option value="Whatsapp">Whatsapp</option>
                                </select>
                            </div>
                            <div class="form-group col-3">        
                                <label for="00N5G00000WmhvT"> Fte. autor. datos personales:</label>
                                <select class="form-control"  id="00N5G00000WmhvT" name="00N5G00000WmhvT" title="Fuente autorización datos personales" >
                                    <option value="Llamada_entrante">Llamada_entrante</option>
+                                   <option value="Whatsapp">Whatsapp</option>
                                </select>
                            </div>
                            <div class="form-group col-3">    
                                <label for="lead_source">Origen del candidato</label>
                                <select  class="form-control" id="lead_source" name="lead_source" >
                                    <option value="Llamada_telefonica">Llamada_telefonica</option>
+                                   <option value="Whatsapp">Whatsapp</option>
                                    </select>
                            </div>
-                           <div class="form-group col-3">    
+
+                           <div class="form-group col-3"> 
+                            <label for="00NJw000001J3g8">Medio </label><select class="form-control" id="00NJw000001J3g8" name="00NJw000001J3g8" title="Medio" type="text">
+                             <option value="Llamada">Llamada</option>
+                             <option value="Whatsapp">Whatsapp</option>
+                             </select>
+                        </div>
+                           <div class="form-group col-3" style="display:none;">    
                                <label for="company">Compañía</label>
                                <select class="form-control" id="company" maxlength="40" name="company" type="text" value="NA" >
                                    <option value="NA">NA</option>
@@ -197,9 +207,7 @@
                            <div class="form-group col-3"> 
                                <label for="00N5G00000WmhvZ">Subfuente:</label><input class="form-control" id="00N5G00000WmhvZ" name="00N5G00000WmhvZ" title="Subfuente" type="text" value="Campana_Inbound"/>
                            </div>
-                           <div class="form-group col-3"> 
-                               <label for="00NJw000001J3g8">Medio </label><input class="form-control" id="00NJw000001J3g8" name="00NJw000001J3g8" title="Medio" type="text" value="Llamada"/>
-                           </div>
+                          
                            <div class="form-group col-3"> 
                                <label for="00N5G00000Wmi8x">Campaña:</label><input class="form-control" id="00N5G00000Wmi8x" maxlength="255" name="00N5G00000Wmi8x"  type="text" value="General"/>
                            </div>

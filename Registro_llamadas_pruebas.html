@@ -161,26 +161,42 @@
                     <br>                 
                 
                     <!-- para ocultar-->
-                    <div class="form-row col-12" style="display: none;">
+                    <div class="form-row col-12">
                         <div class="form-group col-3">
                             <label for="00NO40000002ZeP"> Origen de la Solicitud:</label>
-                            <select class="form-control" id="00NO40000002ZeP" name="00NO40000002ZeP" title="Origen de la Solicitud" >
+                            <select class="form-control" id="00NO40000002ZeP" name="00NO40000002ZeP" title="Origen de la Solicitud" required>
+                                <option value="">Selecciona</option>
                                 <option value="Agentes Mercadeo">Agentes Mercadeo</option>
+                                <option value="Whatsapp">Whatsapp</option>
                             </select>
                         </div>
                         <div class="form-group col-3">        
                             <label for="00N7j000002BY26"> Fte. autor. datos personales:</label>
-                            <select class="form-control"  id="00N7j000002BY26" name="00N7j000002BY26" title="Fuente autorización datos personales" >
+                            <select class="form-control"  id="00N7j000002BY26" name="00N7j000002BY26" title="Fuente autorización datos personales" required>
+                                <option value="">Selecciona</option>
                                 <option value="Llamada_entrante">Llamada_entrante</option>
+                                <option value="Whatsapp">Whatsapp</option>
                             </select>
                         </div>
                         <div class="form-group col-3">    
                             <label for="lead_source">Origen del candidato</label>
-                            <select  class="form-control" id="lead_source" name="lead_source" >
+                            <select  class="form-control" id="lead_source" name="lead_source" required>
+                                <option value="">Selecciona</option>
                                 <option value="Llamada_telefonica">Llamada_telefonica</option>
+                                <option value="Whatsapp">Whatsapp</option>
                                 </select>
                         </div>
-                        <div class="form-group col-3">    
+                        <!--medio-->
+                        <div class="form-group col-3">
+                            <label for="00NO40000001izt">Medio</label>
+                            <select class="form-control" id="00NO40000001izt" name="00NO40000001izt" title="Medio" required>
+                                <option value="">Selecciona</option>
+                                <option value="Llamada">Llamada</option>
+                                <option value="Whatsapp">Whatsapp</option>
+                            </select>
+                        </div>
+                                                
+                        <div class="form-group col-3" style="display: none;">    
                             <label for="company">Compañía</label>
                             <select class="form-control" id="company" maxlength="40" name="company" type="text" value="NA" >
                                 <option value="NA">NA</option>
@@ -196,9 +212,7 @@
                         <div class="form-group col-3"> 
                             <label for="00N7j000002BKgb">Subfuente:</label><input class="form-control" id="00N7j000002BKgb" name="00N7j000002BKgb" title="Subfuente" type="text" value="Campana_Inbound"/>
                         </div>
-                        <div class="form-group col-3"> 
-                            <label for="00NO40000001izt">Medio </label><input class="form-control" id="00NO40000001izt" name="00NO40000001izt" title="Medio" type="text" value="Llamada"/>
-                        </div>
+                        
                         <div class="form-group col-3"> 
                             <label for="00N7j000002BfkF">Campaña:</label><input class="form-control" id="00N7j000002BfkF" maxlength="255" name="00N7j000002BfkF"  type="text" value="General"/>
                         </div>
@@ -586,6 +600,18 @@
         
             // Agregar evento de cambio al campo de búsqueda y a las listas desplegables
             $("#buscarPrograma, #nivelAcademico, #facultad").on("input change", filtrarProgramas);
+
+            document.getElementById('00NO40000002ZeP').addEventListener('change', function() {
+                if (this.value === 'Whatsapp') {
+                    document.getElementById('00N7j000002BY26').value = 'Whatsapp';
+                    document.getElementById('lead_source').value = 'Whatsapp';
+                    document.getElementById('00NO40000001izt').value = 'Whatsapp';
+                } else{
+                    document.getElementById('00N7j000002BY26').value = 'Llamada_entrante';
+                    document.getElementById('lead_source').value = 'Llamada_telefonica';
+                    document.getElementById('00NO40000001izt').value = 'Llamada'; 
+                }
+            }); 
 
             
         });
