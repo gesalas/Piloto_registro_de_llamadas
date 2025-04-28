@@ -377,6 +377,10 @@
           "Nombre": "Maestr\u00eda en Dise\u00f1o para la Innovaci\u00f3n de Productos y Servicios"
         },
         {
+          "Codigo": "MINVC",
+          "Nombre": "Maestr\u00eda en Innovaci\u00f3n en la Construcci\u00f3n"
+        },
+        {
           "Codigo": "MPART",
           "Nombre": "Maestr\u00eda en Paisajes Artificiales"
         },
@@ -1008,7 +1012,7 @@
         },
         {
           "Codigo": "MLTRA",
-          "Nombre": "Maestr\u00eda en Log\u00edstica y Transporte"
+          "Nombre": "Maestr\u00eda en Gesti\u00f3n Inteligente de la Cadena de Abastecimiento"
         },
         {
           "Codigo": "MSEGD",
